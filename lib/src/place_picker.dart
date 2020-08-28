@@ -59,6 +59,7 @@ class PlacePicker extends StatefulWidget {
     this.forceSearchOnZoomChanged = false,
     this.automaticallyImplyAppBarLeading = true,
     this.autocompleteOnTrailingWhitespace = false,
+    this.initialZoom = 15,
   }) : super(key: key);
 
   final String apiKey;
@@ -94,6 +95,7 @@ class PlacePicker extends StatefulWidget {
   final List<Component> autocompleteComponents;
   final bool strictbounds;
   final String region;
+  final double initialZoom;
 
   /// If true the [body] and the scaffold's floating widgets should size
   /// themselves to avoid the onscreen keyboard whose height is defined by the
@@ -380,6 +382,7 @@ class _PlacePickerState extends State<PlacePicker> {
         searchBarController.reset();
       },
       onPlacePicked: widget.onPlacePicked,
+      initialZoom: widget.initialZoom,
     );
   }
 }

@@ -45,6 +45,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
     this.selectInitialPosition,
     this.language,
     this.forceSearchOnZoomChanged,
+    this.initialZoom = 15,
   }) : super(key: key);
 
   final LatLng initialTarget;
@@ -72,6 +73,8 @@ class GoogleMapPlacePicker extends StatelessWidget {
   final String language;
 
   final bool forceSearchOnZoomChanged;
+
+  final double initialZoom;
 
   _searchByCameraLocation(PlaceProvider provider) async {
     // We don't want to search location again if camera location is changed by zooming in/out.
@@ -145,7 +148,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
         builder: (_, data, __) {
           PlaceProvider provider = PlaceProvider.of(context, listen: false);
           CameraPosition initialCameraPosition =
-              CameraPosition(target: initialTarget, zoom: 15);
+              CameraPosition(target: initialTarget, zoom: initialZoom);
 
           return GoogleMap(
             myLocationButtonEnabled: false,
