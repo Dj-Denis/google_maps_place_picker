@@ -235,7 +235,7 @@ class _PlacePickerState extends State<PlacePicker> {
                 ),
                 padding: EdgeInsets.zero)
             : SizedBox(width: 15),
-        this.enableSearch ? Expanded(
+        widget.enableSearch ? Expanded(
           child: AutoCompleteSearch(
               appBarKey: appBarKey,
               searchBarController: searchBarController,
