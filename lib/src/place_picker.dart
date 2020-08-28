@@ -61,6 +61,7 @@ class PlacePicker extends StatefulWidget {
     this.autocompleteOnTrailingWhitespace = false,
     this.initialZoom = 15,
     this.enableSearch = true,
+    this.zoomControlsEnabled = true,
   }) : super(key: key);
 
   final String apiKey;
@@ -73,6 +74,7 @@ class PlacePicker extends StatefulWidget {
 
   final String hintText;
   final String searchingText;
+
   // final double searchBarHeight;
   // final EdgeInsetsGeometry contentPadding;
 
@@ -99,6 +101,7 @@ class PlacePicker extends StatefulWidget {
   final double initialZoom;
 
   final bool enableSearch;
+  final bool zoomControlsEnabled;
 
   /// If true the [body] and the scaffold's floating widgets should size
   /// themselves to avoid the onscreen keyboard whose height is defined by the
@@ -236,34 +239,37 @@ class _PlacePickerState extends State<PlacePicker> {
                 ),
                 padding: EdgeInsets.zero)
             : SizedBox(width: 15),
-        widget.enableSearch ? Expanded(
-          child: AutoCompleteSearch(
-              appBarKey: appBarKey,
-              searchBarController: searchBarController,
-              sessionToken: provider.sessionToken,
-              hintText: widget.hintText,
-              searchingText: widget.searchingText,
-              debounceMilliseconds: widget.autoCompleteDebounceInMilliseconds,
-              onPicked: (prediction) {
-                _pickPrediction(prediction);
-              },
-              onSearchFailed: (status) {
-                if (widget.onAutoCompleteFailed != null) {
-                  widget.onAutoCompleteFailed(status);
-                }
-              },
-              autocompleteOffset: widget.autocompleteOffset,
-              autocompleteRadius: widget.autocompleteRadius,
-              autocompleteLanguage: widget.autocompleteLanguage,
-              autocompleteComponents: widget.autocompleteComponents,
-              autocompleteTypes: widget.autocompleteTypes,
-              strictbounds: widget.strictbounds,
-              region: widget.region,
-              initialSearchString: widget.initialSearchString,
-              searchForInitialValue: widget.searchForInitialValue,
-              autocompleteOnTrailingWhitespace:
-                  widget.autocompleteOnTrailingWhitespace),
-        ) : Container(),
+        widget.enableSearch
+            ? Expanded(
+                child: AutoCompleteSearch(
+                    appBarKey: appBarKey,
+                    searchBarController: searchBarController,
+                    sessionToken: provider.sessionToken,
+                    hintText: widget.hintText,
+                    searchingText: widget.searchingText,
+                    debounceMilliseconds:
+                        widget.autoCompleteDebounceInMilliseconds,
+                    onPicked: (prediction) {
+                      _pickPrediction(prediction);
+                    },
+                    onSearchFailed: (status) {
+                      if (widget.onAutoCompleteFailed != null) {
+                        widget.onAutoCompleteFailed(status);
+                      }
+                    },
+                    autocompleteOffset: widget.autocompleteOffset,
+                    autocompleteRadius: widget.autocompleteRadius,
+                    autocompleteLanguage: widget.autocompleteLanguage,
+                    autocompleteComponents: widget.autocompleteComponents,
+                    autocompleteTypes: widget.autocompleteTypes,
+                    strictbounds: widget.strictbounds,
+                    region: widget.region,
+                    initialSearchString: widget.initialSearchString,
+                    searchForInitialValue: widget.searchForInitialValue,
+                    autocompleteOnTrailingWhitespace:
+                        widget.autocompleteOnTrailingWhitespace),
+              )
+            : Container(),
         SizedBox(width: 5),
       ],
     );
@@ -387,6 +393,7 @@ class _PlacePickerState extends State<PlacePicker> {
       },
       onPlacePicked: widget.onPlacePicked,
       initialZoom: widget.initialZoom,
+      zoomControlsEnabled: widget.zoomControlsEnabled,
     );
   }
 }
