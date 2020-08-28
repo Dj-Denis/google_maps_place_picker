@@ -365,7 +365,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
         appBarKey.currentContext.findRenderObject();
 
     return Positioned(
-      top: appBarRenderBox.size.height,
+      top: appBarRenderBox.size.height - 20,
       right: 15,
       child: Column(
         children: <Widget>[
@@ -380,7 +380,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
                         : Colors.white,
                     elevation: 8.0,
                     onPressed: onToggleMapType,
-                    child: Icon(Icons.layers, color: Colors.black,),
+                    child: Icon(Icons.layers, color: Color(0xff495057),),
                   ),
                 )
               : Container(),
@@ -396,7 +396,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
                         : Colors.white,
                     elevation: 8.0,
                     onPressed: onMyLocation,
-                    child: Icon(Icons.my_location, color: Colors.black),
+                    child: Icon(Icons.my_location, color: Color(0xff495057)),
                   ),
                 )
               : Container(),
