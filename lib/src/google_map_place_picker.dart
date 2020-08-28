@@ -369,7 +369,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
         appBarKey.currentContext.findRenderObject();
 
     return Positioned(
-      top: 15,
+      top: appBarRenderBox.size.height,
       right: 15,
       child: Column(
         children: <Widget>[
