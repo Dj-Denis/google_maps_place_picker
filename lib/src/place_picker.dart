@@ -60,6 +60,7 @@ class PlacePicker extends StatefulWidget {
     this.automaticallyImplyAppBarLeading = true,
     this.autocompleteOnTrailingWhitespace = false,
     this.initialZoom = 15,
+    this.enableSearch = true,
   }) : super(key: key);
 
   final String apiKey;
@@ -96,6 +97,8 @@ class PlacePicker extends StatefulWidget {
   final bool strictbounds;
   final String region;
   final double initialZoom;
+
+  final bool enableSearch;
 
   /// If true the [body] and the scaffold's floating widgets should size
   /// themselves to avoid the onscreen keyboard whose height is defined by the
@@ -232,7 +235,7 @@ class _PlacePickerState extends State<PlacePicker> {
                 ),
                 padding: EdgeInsets.zero)
             : SizedBox(width: 15),
-        Expanded(
+        this.enableSearch ? Expanded(
           child: AutoCompleteSearch(
               appBarKey: appBarKey,
               searchBarController: searchBarController,
@@ -259,7 +262,7 @@ class _PlacePickerState extends State<PlacePicker> {
               searchForInitialValue: widget.searchForInitialValue,
               autocompleteOnTrailingWhitespace:
                   widget.autocompleteOnTrailingWhitespace),
-        ),
+        ) : Container(),
         SizedBox(width: 5),
       ],
     );
